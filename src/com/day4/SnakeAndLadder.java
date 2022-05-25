@@ -11,6 +11,25 @@ public class SnakeAndLadder {
     final static int Snake = 2;
     static int position = 0;
     final static int WINPOINT = 100;
+    public static int calculatedPosition = 0;
+
+    public static int calculatePlayerLadderPosition(int position, int dicevalue) {
+        position = position + dicevalue;
+        if (position > WINPOINT) {
+            position = position - dicevalue;
+        } else if (position == 100) {
+            return position;
+        }
+        return position;
+    }
+
+    public static int calculatePlayerSnakeBitePosition(int position, int dicevalue) {
+        position = position - dicevalue;
+        if (position < 0) {
+            position = 0;
+        }
+        return position;
+    }
 
     public static void main(String[] args) {
         System.out.println("Lets Play Snake and Ladder");
@@ -44,10 +63,7 @@ public class SnakeAndLadder {
             default:
                 break;
             }
-                if (position < 0) {
-                position = 0;
-                }
-        } while (position != WINPOINT);
+        } while (calculatedPosition != WINPOINT);
     }
 
 }
